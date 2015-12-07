@@ -5,12 +5,13 @@ var arrayToPairs = (array) => createPairs(utils.head(array), utils.tail(array));
 var getSubArray = (_,i, arr) => arr.slice(i);
 var getSegmentArray = (array) => array.map(getSubArray); 
 var permute = (array) => getSegmentArray(array).map(arrayToPairs);
-var arrayTo2Tuples = (array) => utils.flatten(permute(array));
+var getSurfaces = (dimensions) => utils.flatten(permute(dimensions));
 
 var splitLines = (input, separator) => input.trim().split(separator);
-var getDimensionArray = (line) => line.split('x');
+var getDimensionArray = (line) => line.split('x').map((i) => parseInt(i, 10));
 var getDimensions = (input, separator) => splitLines(input, separator).map(getDimensionArray)
 
-var getSurfaces = (input, separator) =>getDimensions(input, separator).map(arrayTo2Tuples);
-
-module.exports = getSurfaces;
+module.exports = {
+	getDimensions: getDimensions,
+	getSurfaces: getSurfaces
+}

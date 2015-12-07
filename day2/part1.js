@@ -14,7 +14,7 @@ var sumSurfaceAreas = (surfaceAreas) => utils.sum(Math.min.apply(null, surfaceAr
 var getRequiredPaper = (box) => sumSurfaceAreas(getSurfaceAreas(box));
 
 
-var getAnswer = (input) => parse(input, '|').map(getRequiredPaper).reduce(utils.sum);
+var getAnswer = (input) => parse.getDimensions(input, '|').map(parse.getSurfaces).map(getRequiredPaper).reduce(utils.sum);
 
 
 module.exports = getAnswer;

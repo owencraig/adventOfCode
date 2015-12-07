@@ -5,10 +5,15 @@ var sum = (a, b) => a + b;
 var head = (arr) => arr[0];
 var tail = (arr) => arr.slice(1);
 
+var pushAndReturnArray = (array, value) => array.push(value) && array; // since push will always return at least 1 for the length
+var reduceToArray = (transform, result,current, index, array) => pushAndReturnArray(result, transform(current, index, array, result));
+var mapWithResult = (input, transform) => input.reduce(reduceToArray.bind(null, transform), []);
+
 module.exports = {
 	flatten: flatten,
 	multiply: multiply,
 	sum: sum,
 	head: head,
-	tail: tail
+	tail: tail,
+	mapWithResult: mapWithResult
 };
